@@ -1,25 +1,11 @@
-<button onclick="claimTokens()">Claim Airdrop</button>
-
-<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
-<script>
-  async function claimTokens() {
-    if (!window.ethereum) return alert("Install MetaMask!");
-
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
-
-    const contract = new ethers.Contract(
-      "0xCaB3FAaA777a0858A8ED692e2Abd86832F54e68f", // your faucet contract
-      [ "function claim() public" ],
-      signer
-    );
-
-    try {
-      const tx = await contract.claim();
-      alert("Transaction sent: " + tx.hash);
-    } catch (e) {
-      alert("Error: " + e.message);
-    }
-  }
-</script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Yardrop Faucet</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
